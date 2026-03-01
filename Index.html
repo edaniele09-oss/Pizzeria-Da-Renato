@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Vecchia Bella Napoli Da Renato - Monterone (Forio)</title>
+    <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f355.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --rosso: #D32F2F; --giallo: #FFD54F; --crema: #FFF8E1; --nero: #1A1A1A; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--crema); color: var(--nero); }
+
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 0.8rem 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        
+        .hero { 
+            min-height: 80vh; display: flex; align-items: center; justify-content: center; 
+            background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(45,45,45,0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200') center/cover;
+            color: white; text-align: center; padding: 2rem; margin-top: 50px;
+        }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.2rem); }
+        .hero-title span { color: var(--rosso); display: block; font-size: 0.6em; }
+        
+        .btn-call { background: var(--rosso); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 900; display: inline-block; box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4); border: none; cursor: pointer; }
+
+        #status { display: inline-block; padding: 6px 15px; border-radius: 20px; font-weight: 900; font-size: 0.8rem; margin-bottom: 20px; text-transform: uppercase; }
+        .open { background: #4CAF50; color: white; }
+        .closed { background: #f44336; color: white; }
+
+        .info-bar { background: var(--nero); color: white; padding: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center; border-bottom: 4px solid var(--rosso); }
+        .info-bar strong { color: var(--giallo); display: block; }
+
+        .map-container { width: 100%; height: 350px; border: none; }
+        .map-frame { width: 100%; height: 100%; border: 0; }
+
+        .menu-section { padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem; }
+        .menu-cat { background: white; padding: 2rem; border-radius: 20px; border-top: 6px solid var(--rosso); box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: fit-content; }
+        .menu-cat h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #f5f5f5; color: var(--rosso); }
+        
+        .item { display: flex; justify-content: space-between; margin: 12px 0; border-bottom: 1px dashed #eee; padding-bottom: 8px; align-items: flex-start; }
+        .item-info { max-width: 80%; }
+        .item-info h4 { font-size: 1.05rem; color: #111; text-transform: uppercase; }
+        .item-info p { font-size: 0.85rem; color: #666; font-style: italic; }
+        .price { color: var(--rosso); font-weight: 900; }
+
+        /* Stile specifico per le aggiunte */
+        .aggiunte-container { background: white; padding: 2rem; border-radius: 20px; border: 2px solid var(--rosso); margin-top: 3rem; }
+        .aggiunte-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 1.5rem; }
+        .aggiunta-item { display: flex; justify-content: space-between; padding: 8px; background: #f9f9f9; border-radius: 8px; font-size: 0.9rem; border-left: 3px solid var(--rosso); }
+
+        .cta-footer { background: var(--rosso); color: white; text-align: center; padding: 4rem 1rem; }
+        .big-number { font-size: 2.8rem; color: var(--giallo); text-decoration: none; font-weight: 900; display: block; margin: 15px 0; }
+        footer { background: #111; color: #777; text-align: center; padding: 2rem; font-size: 0.8rem; }
+
+        @media (max-width: 600px) { .menu-grid { grid-template-columns: 1fr; } .big-number { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" style="text-decoration:none; color:var(--rosso); font-weight:900;">🍕 DA RENATO</a>
+            <a href="tel:0810123841" class="btn-call" style="padding: 0.5rem 1rem; font-size: 0.8rem;">CHIAMA ORA</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div id="status">Verifica...</div>
+            <h1 class="hero-title">La Vecchia Bella Napoli <span>Da Renato</span></h1>
+            <p style="font-size: 2rem; color: var(--giallo); font-style: italic; margin: 1rem 0;">"Chest so' pizz!"</p>
+            <p style="margin-bottom: 2rem;">Piazza SS. Immacolata, Monterone (Forio)</p>
+            <a href="tel:0810123841" class="btn-call">📞 ORDINA ORA</a>
+        </div>
+    </section>
+
+    <div class="info-bar">
+        <div><strong>📍 INDIRIZZO</strong>Piazza SS. Immacolata, Monterone</div>
+        <div><strong>⏰ ORARI</strong>18:00 - 23:30 (Mercoledì Chiuso)</div>
+        <div><strong>🚚 CONSEGNA</strong>Solo 1,00€</div>
+    </div>
+
+    <div class="map-container">
+        <iframe class="map-frame" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d754.7431535497276!2d13.869032585189748!3d40.73887556950294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b393516240a3f%3A0x83e49c111fdbf69b!2sPizzeria%20La%20vecchia%20Bella%20Napoli%20Da%20Renato!5e1!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+            allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <section class="menu-section">
+        <div class="menu-grid">
+            
+            <div class="menu-cat">
+                <h3>🍕 Pizze</h3>
+                <div class="item"><div class="item-info"><h4>Margherita</h4><p>Pomodoro, mozzarella, formaggio, basilico, olio</p></div><span class="price">4,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Napoletana</h4><p>Pomodoro, aglio, origano, olio</p></div><span class="price">3,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Cosacca</h4><p>Pomodoro, formaggio, basilico, olio</p></div><span class="price">3,50€</span></div>
+                <div class="item"><div class="item-info"><h4>D.O.C</h4><p>Pomodorini, bufala, formaggio, olio, basilico</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Filetto</h4><p>Pomodorini, mozzarella, formaggio, basilico, olio</p></div><span class="price">5,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Capricciosa</h4><p>Pomodoro, mozzarella, p.cotto, carciofini, funghi, salame, olive nere, olio, basilico</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Isola Verde</h4><p>Mozzarella, p.crudo, rucola, scaglie di grana, olio, basilico</p></div><span class="price">7,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Cip e Ciop</h4><p>Mozzarella, wurstel, patatine</p></div><span class="price">7,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Contadina</h4><p>Mozzarella, tonno, cipolla</p></div><span class="price">6,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Ortolana</h4><p>Mozzarella, verdure miste</p></div><span class="price">7,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Diavola</h4><p>Pomodoro, mozzarella, salame piccante, basilico, olio</p></div><span class="price">6,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Mimosa</h4><p>Mozzarella, panna, mais, p.cotto</p></div><span class="price">6,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Parmigiana</h4><p>Mozzarella, parmigiana di melanzane, basilico, formaggio</p></div><span class="price">7,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Romana</h4><p>Pomodoro, mozzarella, acciughe, basilico, olio</p></div><span class="price">5,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Ripieno</h4><p>Pomodoro, mozzarella, ricotta, salame, p.cotto, olio, basilico</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Quattro Stagioni</h4><p>Pomodoro, mozzarella, funghi, p.cotto, salame, carciofini, basilico, olio</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Siciliana</h4><p>Mozzarella, melanzane a funghetto, basilico, formaggio, olio</p></div><span class="price">6,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Paesana</h4><p>Mozzarella, salsiccie, friarielli</p></div><span class="price">7,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Quattro Formaggi</h4><p>Mozzarella, crema di formaggi misti, gorgonzola</p></div><span class="price">7,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Focaccia</h4><p>Olio, sale, rosmarino</p></div><span class="price">2,00€</span></div>
+            </div>
+
+            <div class="menu-cat">
+                <h3>⭐ Pizze Speciali</h3>
+                <div class="item"><div class="item-info"><h4>Pizza Bella Napoli</h4><p>Provola, porcini, datterini, salsiccia, formaggio, basilico, olio</p></div><span class="price">8,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Pizza Krok</h4><p>Mozzarella, p. cotto, panna, crocche, basilico, formaggio</p></div><span class="price">7,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Mortadella</h4><p>Provola, mortadella, ricotta, granella di pistacchio, basilico, olio</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Luna Piena</h4><p>Pomodoro, mozzarella, salame, p.cotto, ricotta, formaggio, basilico, olio</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Gustosa</h4><p>Mozzarella, salsiccia, cipolla, gorgonzola, patate al forno, olio, basilico</p></div><span class="price">8,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Pizza Serafino</h4><p>Provola, ricotta, pancetta, taralli sbriciolati, basilico, olio, formaggio</p></div><span class="price">7,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Limoni Ischitani</h4><p>Provola, ricotta, pancetta, rucola, limone grattugiato, olio, basilico</p></div><span class="price">8,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Pizza Pesto</h4><p>Provola, pesto di basilico, pomodorini, scaglie di grana</p></div><span class="price">7,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Porcini</h4><p>Mozzarella, porcini, basilico, olio</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Carciopizza</h4><p>Crema di carciofi, mozzarella, carciofini, scaglie di grana, basilico</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Cornicione ripieno di ricotta</h4><p>Base Margherita con bordi farciti</p></div><span class="price">6,50€</span></div>
+            </div>
+
+            <div class="menu-cat">
+                <h3>🍟 Rosticceria</h3>
+                <div class="item"><h4>Crocché</h4><span class="price">1,00€</span></div>
+                <div class="item"><h4>Arancini</h4><span class="price">2,50€</span></div>
+                <div class="item"><h4>Frittatina classica</h4><span class="price">2,50€</span></div>
+                <div class="item"><h4>Porzione patatine</h4><span class="price">4,50€</span></div>
+                <div class="item"><h4>Mozzarella in carrozza</h4><span class="price">2,50€</span></div>
+                <div class="item"><h4>Medaglione di patate</h4><span class="price">2,50€</span></div>
+                <div class="item"><div class="item-info"><h4>Calzone fritto</h4><p>Ricotta, mozzarella, salame, p.cotto</p></div><span class="price">8,00€</span></div>
+                <div class="item"><div class="item-info"><h4>Pizza fritta napoletana</h4><p>Ricotta, provola, cicoli, pepe, pomodoro</p></div><span class="price">8,00€</span></div>
+                <div class="item"><h4>Montanara</h4><span class="price">5,00€</span></div>
+                <div class="item"><h4>Patatine fritte con Würstel</h4><span class="price">5,00€</span></div>
+            </div>
+        </div>
+
+        <div class="aggiunte-container">
+            <h3 style="text-align: center; color: var(--rosso);">➕ LE AGGIUNTE</h3>
+            <div class="aggiunte-grid">
+                <div class="aggiunta-item"><span>Prosciutto cotto</span><strong>1.50€</strong></div>
+                <div class="aggiunta-item"><span>Prosciutto crudo</span><strong>2.50€</strong></div>
+                <div class="aggiunta-item"><span>Salame</span><strong>1.50€</strong></div>
+                <div class="aggiunta-item"><span>Speck</span><strong>1.50€</strong></div>
+                <div class="aggiunta-item"><span>Bufala</span><strong>2.50€</strong></div>
+                <div class="aggiunta-item"><span>Mozzarella</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Wurstel</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Tonno</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Acciughe</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Salsicce</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Hamburger</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Porcini</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Crema di carciofi</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Crema di formaggio</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Funghi trifolati</span><strong>1.50€</strong></div>
+                <div class="aggiunta-item"><span>Parmigiana</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Melanzane funghetto</span><strong>1.50€</strong></div>
+                <div class="aggiunta-item"><span>Friarielli</span><strong>1.50€</strong></div>
+                <div class="aggiunta-item"><span>Crocché (singolo)</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Panna</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Cipolla</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Carciofi</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Mais</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Rucola</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Scaglie di grana</span><strong>1.50€</strong></div>
+                <div class="aggiunta-item"><span>Ricotta</span><strong>2.00€</strong></div>
+                <div class="aggiunta-item"><span>Olive</span><strong>1.00€</strong></div>
+                <div class="aggiunta-item"><span>Pomodorini</span><strong>1.00€</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-footer">
+        <h2>Ti è venuta fame?</h2>
+        <a href="tel:0810123841" class="big-number">081 0123841</a>
+        <p>Piazza SS. Immacolata, Monterone - Forio</p>
+    </section>
+
+    <footer>
+        <p>© 2026 La Vecchia Bella Napoli Da Renato<br>Aperto dalle 18:00 alle 23:30 • Mercoledì Chiuso</p>
+    </footer>
+
+    <script>
+        function checkStatus() {
+            const ora = new Date();
+            const giorno = ora.getDay();
+            const h = ora.getHours() + (ora.getMinutes() / 60);
+            const badge = document.getElementById('status');
+            if (giorno === 3) { badge.innerText = "🔴 OGGI CHIUSI"; badge.className = "closed"; }
+            else if (h >= 18 && h < 23.5) { badge.innerText = "🟢 APERTO - ORDINA ORA"; badge.className = "open"; }
+            else { badge.innerText = "🔴 CHIUSO - APRIAMO ALLE 18:00"; badge.className = "closed"; }
+        }
+        checkStatus(); setInterval(checkStatus, 60000);
+    </script>
+</body>
+</html>
